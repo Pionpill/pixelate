@@ -1,0 +1,5 @@
+__pycache__/
+origin/*.png
+out/*.png
+analyze/*.png
+temp/

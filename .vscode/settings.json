@@ -1,0 +1,13 @@
+{
+    "cSpell.words": ["fromarray", "nditer"],
+    "files.exclude": {
+        "**/__pycache__": true
+    },
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    }
+}
