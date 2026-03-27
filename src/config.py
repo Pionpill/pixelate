@@ -9,7 +9,7 @@ config = {
     },
     # 像素化参数
     "pixelate_options": {
-        "resolution": 16,  # 导出图像的像素
+        "resolution": 32,  # 导出图像的像素
         "alpha_skip": 1,  # 不透明度低于此值的像素将不被计算
         "count_ratio": 0.3,  # 像素化比例，被计算的像素/总像素，大于此值才生成结果像素
         "hue_ratio": 0.3,  # 像素占比超过此值，将排除其他像素的影响

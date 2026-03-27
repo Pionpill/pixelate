@@ -27,10 +27,10 @@ def __get_matrix_hueMap(matrix: np.ndarray, options: dict) -> tuple:
         if pixel_hue_key in hue_map:
             hue_value = hue_map[pixel_hue_key]
             hue_value["count"] += 1
-            hue_value["sum_red"] += pixel[0]
-            hue_value["sum_green"] += pixel[1]
-            hue_value["sum_blue"] += pixel[2]
-            hue_value["sum_alpha"] += pixel[3]
+            hue_value["sum_red"] += int(pixel[0])
+            hue_value["sum_green"] += int(pixel[1])
+            hue_value["sum_blue"] += int(pixel[2])
+            hue_value["sum_alpha"] += int(pixel[3])
         else:
             hue_map[pixel_hue_key] = {
                 "count": 1,
