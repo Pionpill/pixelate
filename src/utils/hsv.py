@@ -7,9 +7,10 @@ import numpy as np
 
 def get_pixel_hue(pixel: tuple[int]) -> float:
     Hue = math.atan2(
-        np.sqrt(3) * (int(pixel[1]) - pixel[2]), 2 * pixel[0] - pixel[1] - pixel[2]
+        math.sqrt(3) * (int(pixel[1]) - int(pixel[2])),
+        2 * int(pixel[0]) - int(pixel[1]) - int(pixel[2]),
     )
-    return (Hue / np.pi) * 180
+    return (Hue / math.pi) * 180
 
 
 def get_image_hsv(image: np.ndarray) -> tuple[float, float, float]:
@@ -24,9 +25,9 @@ def get_image_hsv(image: np.ndarray) -> tuple[float, float, float]:
     rgba_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
     alpha_channel = rgba_image[:, :, 3]
 
-    total_hue = 0
-    total_saturation = 0
-    total_value = 0
+    total_hue = 0.0
+    total_saturation = 0.0
+    total_value = 0.0
     pixel_count = 0
 
     for i in range(rgba_image.shape[0]):
@@ -37,9 +38,9 @@ def get_image_hsv(image: np.ndarray) -> tuple[float, float, float]:
             hsv_pixel = cv2.cvtColor(np.array([[pixel]]), cv2.COLOR_RGB2HSV)[0][0]
             hue, saturation, value = hsv_pixel[0], hsv_pixel[1], hsv_pixel[2]
 
-            total_hue += hue
-            total_saturation += saturation
-            total_value += value
+            total_hue += float(hue)
+            total_saturation += float(saturation)
+            total_value += float(value)
             pixel_count += 1
 
     avg_hue = total_hue / pixel_count

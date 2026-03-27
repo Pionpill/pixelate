@@ -33,7 +33,7 @@ def filter(image: np.ndarray, options: dict) -> np.ndarray:
         return image
     for i, j in itertools.product(range(hsv_image.shape[0]), range(hsv_image.shape[1])):
         if __is_edge_pixel(alpha_channel, (i, j), options["side"]):
-            hsv_image[i, j, 2] = np.clip(hsv_image[i, j, 2] - 35, 0, 255)
+            hsv_image[i, j, 2] = np.clip(int(hsv_image[i, j, 2]) - 35, 0, 255)
 
     rgb_image = cv2.cvtColor(hsv_image, cv2.COLOR_HSV2RGB)
     out_image = image.copy()

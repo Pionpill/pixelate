@@ -17,7 +17,7 @@ def process(file_path: str, config: dict) -> None:
         config (dict): config 对象
     """
     try:
-        image = np.array(Image.open(file_path))
+        image = np.array(Image.open(file_path).convert("RGBA"))
         image = pretreat(image, config["pretreat_options"])
         image = pixelate(image, config["pixelate_options"])
         image = stylize(image, config["stylize_options"])
@@ -25,7 +25,11 @@ def process(file_path: str, config: dict) -> None:
 
         origin_dir = os.path.abspath(config["origin_dir"])
         out_dir = os.path.abspath(config["out_dir"])
-        image.save(file_path.replace(origin_dir, out_dir))
+        out_path = file_path.replace(origin_dir, out_dir)
+        # always save as PNG regardless of input format to preserve RGBA channels
+        out_path = os.path.splitext(out_path)[0] + ".png"
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        image.save(out_path)
     except UnidentifiedImageError as e:
         pass
     except Exception as e:
